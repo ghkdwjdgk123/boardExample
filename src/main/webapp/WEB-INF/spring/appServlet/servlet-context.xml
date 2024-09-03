@@ -14,16 +14,15 @@
     <mvc:annotation-driven />
     <!-- This tag allows for mapping the DispatcherServlet to "/" -->
     <mvc:default-servlet-handler />
-
-    <!-- Process annotations on registered beans like @Autowired... -->
+    <mvc:resources mapping="/**" location="/resources/" />   <!-- Process annotations on registered beans like @Autowired... -->
     <context:annotation-config/>
     <!-- 컴포넌트 스캔 -->
-    <context:component-scan base-package="com.example.boardproject" />
+
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
+    <context:component-scan base-package="com.example.boardproject" />
 </beans>

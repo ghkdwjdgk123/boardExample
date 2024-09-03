@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.BoardDao">
+    <delete id="deleteAll">
+        delete from board
+    </delete>
+    <insert id="insert" parameterType="BoardDto">
+        insert into board(title, content, writer, cr_id, ur_id)
+        values (#{title}, #{content}, #{writer}, #{cr_id}, #{ur_id})
+    </insert>
+    <select id="selectList" parameterType="PageHanddler" resultType="BoardDto">
+        select * from board
+        limit #{offset} offset #{startNum}
+    </select>
+    <select id="selectByBn" parameterType="int" resultType="BoardDto">
+        select * from board
+        where bn = #{bn}
+    </select>
+    <update id="update" parameterType="BoardDto">
+        update board set
+                         title = #{title},
+                         content = #{content},
+                         writer = #{writer},
+                         ur_id = #{ur_id}
+        where bn = #{bn};
+    </update>
+
+</mapper>
