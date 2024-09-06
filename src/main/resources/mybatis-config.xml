@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.example.boardproject.home.domain.UserDto" alias="UserDto" />
+        <typeAlias type="com.example.boardproject.user.domain.UserDto" alias="UserDto" />
         <typeAlias type="com.example.boardproject.board.domain.BoardDto" alias="BoardDto" />
+        <typeAlias type="com.example.boardproject.board.entity.PageHandler" alias="PageHanddler" />
     </typeAliases>
 </configuration>

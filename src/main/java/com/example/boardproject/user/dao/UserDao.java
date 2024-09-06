@@ -1,7 +1,6 @@
-package com.example.boardproject.home.dao;
+package com.example.boardproject.user.dao;
 
-import com.example.boardproject.home.domain.UserDto;
-import org.apache.ibatis.annotations.Param;
+import com.example.boardproject.user.domain.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 

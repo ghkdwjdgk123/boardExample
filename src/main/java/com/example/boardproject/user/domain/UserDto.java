@@ -1,4 +1,4 @@
-package com.example.boardproject.home.domain;
+package com.example.boardproject.user.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

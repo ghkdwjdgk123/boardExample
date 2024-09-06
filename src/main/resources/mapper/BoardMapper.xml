@@ -6,6 +6,9 @@
     <delete id="deleteAll">
         delete from board
     </delete>
+    <select id="count">
+        select count("X") from board
+    </select>
     <insert id="insert" parameterType="BoardDto">
         insert into board(title, content, writer, cr_id, ur_id)
         values (#{title}, #{content}, #{writer}, #{cr_id}, #{ur_id})

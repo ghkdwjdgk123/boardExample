@@ -1,7 +1,7 @@
-package com.example.boardproject.home.service;
+package com.example.boardproject.user.service;
 
-import com.example.boardproject.home.dao.UserDao;
-import com.example.boardproject.home.domain.UserDto;
+import com.example.boardproject.user.dao.UserDao;
+import com.example.boardproject.user.domain.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
