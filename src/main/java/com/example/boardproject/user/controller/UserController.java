@@ -3,19 +3,19 @@ package com.example.boardproject.user.controller;
 import com.example.boardproject.user.domain.UserDto;
 import com.example.boardproject.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -29,12 +29,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(String path, HttpServletRequest request, HttpSession session, UserDto userDto, Model model) {
+    public ResponseEntity<?> login(@RequestBody UserDto userDto,HttpSession session) {
+        HttpHeaders resHeaders = new HttpHeaders();
+        resHeaders.add("content-type", "application/json;charset=UTF-8");
         if (userService.UserCheck(userDto)) {
             session.setAttribute("userId", userDto.getId());
-            return ResponseEntity.ok("로그인 성공");
+
+            return new ResponseEntity<>("로그인 성공", resHeaders, HttpStatus.OK);
         } else {
-            return ResponseEntity.ok("아이디나 비밀번호가 틀림니다.");
+            return new ResponseEntity<>("로그인 실패", resHeaders, HttpStatus.OK);
         }
     }
 
