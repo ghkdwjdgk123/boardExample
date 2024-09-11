@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("user")
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

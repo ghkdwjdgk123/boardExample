@@ -15,6 +15,14 @@
     <!-- This tag allows for mapping the DispatcherServlet to "/" -->
     <mvc:default-servlet-handler />
     <mvc:resources mapping="/**" location="/resources/" />   <!-- Process annotations on registered beans like @Autowired... -->
+    <!-- CORS 설정 -->
+    <mvc:cors>
+        <mvc:mapping path="/**"
+                     allowed-origins="http://localhost:3000"
+                     allowed-methods="GET, POST, PUT, DELETE, OPTIONS"
+                     allowed-headers="*"
+                     allow-credentials="true"/>
+    </mvc:cors>
     <context:annotation-config/>
     <!-- 컴포넌트 스캔 -->
 
@@ -24,5 +32,7 @@
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+
     <context:component-scan base-package="com.example.boardproject" />
 </beans>

@@ -16,8 +16,6 @@ public class UserService {
     }
     public boolean UserCheck(UserDto dto){
         UserDto user=userDao.checkById(dto.getId());
-        System.out.println("user"+user);
-        System.out.println((dto.getPassword()).equals(user.getPassword()));
         return (dto.getPassword()).equals(user.getPassword());
     }
 }

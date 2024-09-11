@@ -1,71 +1,46 @@
 package com.example.boardproject.board.entity;
 
-import java.util.Objects;
+import com.example.boardproject.board.domain.BoardDto;
+
+import java.util.List;
 
 public class PageHandler {
-    private int navSize = 10; // 내비게이션 크기
-    private int totalCnt; // 총 게시물 갯수
-    private Integer page; // 현재 페이지
-    private Integer pageSize; // 페이지 크기
-    private int totalPage; // 총 페이지 갯수
-    private int beginPage; // 제일 첫번쨰 페이지
-    private int endPage; // 제일 마지막 페이지
-    private boolean prevPage; // 이전페이지로 이동할수있는지
-    private boolean nextPage; // 다음페이지로 이동할수있는지
-    private int offset; // 페이지 offset
+    private int navSize = 10;
+    private int totalCnt;
+    private Integer page;
+    private Integer pageSize;
+    private int totalPage;
+    private int beginPage;
+    private int endPage;
+    private boolean prevPage;
+    private boolean nextPage;
+    private int offset;
+    private List<BoardDto> boardList;  // 게시글 목록
 
-    public int getOffset() {
-        return offset;
-    }
+    // 기본 생성자
+    public PageHandler() {}
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
-    public PageHandler(){} // 기본 생성자
-
-    public PageHandler(Integer totalCnt,Integer page) {
-        this(totalCnt,page,10);
-    }
-
-    public PageHandler(Integer totalCnt,Integer page,Integer pageSize) {
+    // 생성자
+    public PageHandler(Integer totalCnt, Integer page, Integer pageSize) {
         this.totalCnt = totalCnt;
         this.page = page;
         this.pageSize = pageSize;
-        this.totalPage = (int) Math.ceil(totalCnt/(double)pageSize);
-        this.beginPage = ((page-1)/navSize)*navSize+1;
-        this.endPage = Math.min(beginPage+(navSize-1),totalPage);
+        this.totalPage = (int) Math.ceil(totalCnt / (double) pageSize);
+        this.beginPage = ((page - 1) / navSize) * navSize + 1;
+        this.endPage = Math.min(beginPage + (navSize - 1), totalPage);
         this.prevPage = beginPage != 1;
         this.nextPage = endPage != totalPage;
-        this.offset = (this.page-1)*this.pageSize;
+        this.offset = (this.page - 1) * this.pageSize;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PageHandler that = (PageHandler) o;
-        return totalCnt == that.totalCnt && page == that.page && pageSize == that.pageSize;
+    // 게시글 목록 설정
+    public void setBoardList(List<BoardDto> boardList) {
+        this.boardList = boardList;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(totalCnt, page, pageSize);
-    }
-
-    @Override
-    public String toString() {
-        return "PageHandler{" +
-                "navSize=" + navSize +
-                ", totalCnt=" + totalCnt +
-                ", page ="+page+
-                ", pageSize ="+pageSize+
-                ", totalPage=" + totalPage +
-                ", beginPage=" + beginPage +
-                ", endPage=" + endPage +
-                ", prevPage=" + prevPage +
-                ", nextPage=" + nextPage +
-                '}';
+    // 게시글 목록 가져오기
+    public List<BoardDto> getBoardList() {
+        return boardList;
     }
 
     public int getNavSize() {
@@ -139,4 +114,13 @@ public class PageHandler {
     public void setNextPage(boolean nextPage) {
         this.nextPage = nextPage;
     }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+    // 그 외 getter/setter들...
 }

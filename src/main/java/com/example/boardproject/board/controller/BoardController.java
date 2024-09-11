@@ -1,6 +1,7 @@
 package com.example.boardproject.board.controller;
 
 import com.example.boardproject.board.domain.BoardDto;
+import com.example.boardproject.board.entity.PageHandler;
 import com.example.boardproject.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,21 +18,23 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("")
-    public List<BoardDto> board(Integer pageNo) {
+    public PageHandler board(Integer pageNo) {
         pageNo = pageNo == null ? 1 : pageNo;
+        System.out.println(boardService.getBoards(pageNo));
         return boardService.getBoards(pageNo);
     }
     @GetMapping("/read")
-    public BoardDto read(Integer boardNo) {
+    public BoardDto read(@RequestParam Integer boardNo) {
         return boardService.getBoardByBn(boardNo);
     }
     @PostMapping("/register")
-    public List<BoardDto> register(BoardDto boardDto) {
+    public PageHandler register(@RequestBody BoardDto boardDto) {
         boardService.insertBoard(boardDto);
+        System.out.println(boardDto);
         return boardService.getBoards(1);
     }
     @PatchMapping("/update")
-    public ResponseEntity<String> update(BoardDto boardDto) {
+    public ResponseEntity<String> update(@RequestBody BoardDto boardDto) {
         boardService.updateBoard(boardDto);
         return ResponseEntity.ok("업데이트 성공");
     }

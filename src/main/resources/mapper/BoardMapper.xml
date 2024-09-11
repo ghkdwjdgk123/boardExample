@@ -6,7 +6,7 @@
     <delete id="deleteAll">
         delete from board
     </delete>
-    <select id="count">
+    <select id="count" resultType="int">
         select count("X") from board
     </select>
     <insert id="insert" parameterType="BoardDto">

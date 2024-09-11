@@ -17,9 +17,12 @@ public class BoardService {
         return boardDao.selectByBn(id);
 
     }
-    public List<BoardDto> getBoards(int pageNo) {
+    public PageHandler getBoards(int pageNo) {
         PageHandler ph = new PageHandler(boardDao.countBoard(), pageNo, 10);
-        return boardDao.selectList(ph);
+        List<BoardDto>dtolist = boardDao.selectList(ph);
+        ph.setBoardList(dtolist);
+        ph.setTotalCnt(boardDao.countBoard());
+        return ph;
     }
     public int insertBoard(BoardDto board) {
         return boardDao.insert(board);
